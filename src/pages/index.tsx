@@ -24,15 +24,19 @@ export default function Home(): JSX.Element {
     getNextPageParam: images => images.data.after ?? null,
   });
 
-  console.log(data);
-
   const formattedData = useMemo(() => {
-    return data.pages[0].data.data;
+    const newData = data?.pages.map(page => page.data.data).flat();
+
+    return newData;
   }, [data]);
 
-  // TODO RENDER LOADING SCREEN
+  if (isLoading) {
+    return <Loading />;
+  }
 
-  // TODO RENDER ERROR SCREEN
+  if (isError) {
+    return <Error />;
+  }
 
   return (
     <>
@@ -40,7 +44,11 @@ export default function Home(): JSX.Element {
 
       <Box maxW={1120} px={20} mx="auto" my={20}>
         <CardList cards={formattedData} />
-        {/* TODO RENDER LOAD MORE BUTTON IF DATA HAS NEXT PAGE */}
+        {hasNextPage && (
+          <Button disabled={isFetchingNextPage} onClick={() => fetchNextPage()}>
+            {isFetchingNextPage ? 'Carregando...' : 'Carregar mais'}
+          </Button>
+        )}
       </Box>
     </>
   );
