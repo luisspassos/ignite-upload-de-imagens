@@ -23,6 +23,8 @@ export default function Home(): JSX.Element {
     // TODO GET AND RETURN NEXT PAGE PARAM
   );
 
+  console.log(data);
+
   const formattedData = useMemo(() => {
     // TODO FORMAT AND FLAT DATA ARRAY
   }, [data]);
