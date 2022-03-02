@@ -24,9 +24,9 @@ export default function Home(): JSX.Element {
     getNextPageParam: images => images.data.after ?? null,
   });
 
-  console.log(data.pages.flat());
-
-  const formattedData = useMemo(() => {}, [data]);
+  const formattedData = useMemo(() => {
+    return data.pages[0].data.data;
+  }, [data]);
 
   // TODO RENDER LOADING SCREEN
 
