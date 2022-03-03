@@ -37,16 +37,11 @@ export function FormAddImage({ closeModal }: FormAddImageProps): JSX.Element {
   };
 
   const queryClient = useQueryClient();
-  const mutation = useMutation(
-    (data: Record<string, unknown>) => {
-      api.post('api/images', data);
-    },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries('images');
-      },
-    }
-  );
+  // const mutation = useMutation(
+
+  // {,
+
+  // });
 
   const { register, handleSubmit, reset, formState, setError, trigger } =
     useForm();
@@ -64,7 +59,7 @@ export function FormAddImage({ closeModal }: FormAddImageProps): JSX.Element {
         return;
       }
 
-      await mutation.mutateAsync(data);
+      // await mutation.mutateAsync(data);
       toast({
         title: 'Imagem cadastrada',
         description: 'Sua imagem foi cadastrada com sucesso.',
