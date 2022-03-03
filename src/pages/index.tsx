@@ -2,16 +2,34 @@ import { Button, Box } from '@chakra-ui/react';
 import { useMemo } from 'react';
 import { useInfiniteQuery } from 'react-query';
 
-import { AxiosResponse } from 'axios';
 import { Header } from '../components/Header';
 import { CardList } from '../components/CardList';
 import { api } from '../services/api';
 import { Loading } from '../components/Loading';
 import { Error } from '../components/Error';
 
+interface Image {
+  title: string;
+  description: string;
+  url: string;
+  ts: number;
+  id: string;
+}
+
+interface GetImagesResponse {
+  after: string;
+  data: Image[];
+}
+
 export default function Home(): JSX.Element {
-  const fetchImages = ({ pageParam = 0 }): Promise<AxiosResponse<any>> =>
-    api.get(`/api/images?after=${pageParam}`);
+  async function fetchImages({ pageParam = null }): Promise<GetImagesResponse> {
+    const { data } = await api('api/images', {
+      params: {
+        after: pageParam,
+      },
+    });
+    return data;
+  }
 
   const {
     data,
@@ -21,20 +39,22 @@ export default function Home(): JSX.Element {
     fetchNextPage,
     hasNextPage,
   } = useInfiniteQuery('images', fetchImages, {
-    getNextPageParam: images => images.data.after ?? null,
+    getNextPageParam: lastPage => lastPage?.after || null,
   });
 
   const formattedData = useMemo(() => {
-    const newData = data?.pages.map(page => page.data.data).flat();
+    const formatted = data?.pages.flatMap(imageData => {
+      return imageData.data.flat();
+    });
 
-    return newData;
+    return formatted;
   }, [data]);
 
-  if (isLoading) {
+  if (isLoading && !isError) {
     return <Loading />;
   }
 
-  if (isError) {
+  if (isError && !isLoading) {
     return <Error />;
   }
 
@@ -44,11 +64,12 @@ export default function Home(): JSX.Element {
 
       <Box maxW={1120} px={20} mx="auto" my={20}>
         <CardList cards={formattedData} />
+
         {hasNextPage && (
           <Button
-            mt={8}
-            disabled={isFetchingNextPage}
             onClick={() => fetchNextPage()}
+            disabled={isFetchingNextPage}
+            mt="6"
           >
             {isFetchingNextPage ? 'Carregando...' : 'Carregar mais'}
           </Button>
