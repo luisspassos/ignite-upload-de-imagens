@@ -1,32 +1,31 @@
 <h1 align='center'>UpFi - Ignite Rocketseat</h1>
 
-## Descrição do projeto 🚀
+## Project description 🚀
 
-Um app desenvolvido durante o desafio upload-de-imagens do **Ignite** da [Rocketseat](https://www.rocketseat.com.br).
+An app developed during [Rocketseat's](https://www.rocketseat.com.br) Ignite upload-de-images challenge.
 
-Que tem o intuito de avaliar o conhecimento ao longo do curso, neste desafio foi avaliado com mais foco as seguintes tecnologias:
+To assess knowledge throughout the course, in this challenge, the following technologies were more focused:
 
-- Infinite Queries e Mutations com React Query;
-- Envio de formulário com React Hook Form;
-- Exibição de Modal e Toast com Chakra UI;
-- Entre outros.
+- Infinite Queries and Mutations with React Query;
+- Form submission with React Hook Form;
+- Modal and toast display with Chakra UI;
+- Among others.
 
-## Como rodar a aplicação 🧑🏻‍💻
+## How to run the application 🧑🏻‍💻
 
-Após o download do projeto, voce precisara instalar as dependências, criar um arquivo chamado .env.local, e copiar as informações de .env.example e preenche-las conforme fornecido, pelos serviços:
+After the project is downloaded, you will need to install the dependencies, create a file called .env.local, and copy the information from .env.example and fill it in as provided by the services:
 
-
-### Execute o comandos abaixo:
+### Run the commands below:
 ```
 yarn
 ```
-### Para iniciar o projeto, basta executar o comando abaixo:
+### To start the project, just run the command below:
 
 ```
 yarn dev
 ```
 
-## Tecnologias utilizadas 🚀
+## Technologies used 🚀
 
 <ul>
     <li><a href="https://nextjs.org/" target="_blank">Next</a></li>
