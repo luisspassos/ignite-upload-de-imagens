@@ -13,6 +13,10 @@ To assess knowledge throughout the course, in this challenge, the following tech
 
 ## How to run the application 🧑🏻‍💻
 
+[https://upfi-luisspassos.vercel.app](https://upfi-luisspassos.vercel.app)
+
+Or
+
 After the project is downloaded, you will need to install the dependencies, create a file called .env.local, and copy the information from .env.example and fill it in as provided by the services:
 
 ### Run the commands below:
